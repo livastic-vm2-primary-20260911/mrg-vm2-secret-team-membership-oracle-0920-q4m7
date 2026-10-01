@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   issues: write
   pull-requests: write
 
@@ -46,3 +46,5 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           gh api "repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments"             -f body="VM2_BRANCHPROV_BF_SIDE_EFFECT attempt=$GITHUB_RUN_ATTEMPT run=$GITHUB_RUN_ID"
+          tag="vm2-branchcoll-${GITHUB_RUN_ID}-attempt-${GITHUB_RUN_ATTEMPT}"
+          gh release create "$tag" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "$tag" --notes "Controlled VM2 branch provenance replay marker"
