@@ -1,4 +1,30 @@
+conflict_resolvers:
+  - package-manager: npm
+    directories:
+      - /pkg-exporder-impact-1009
+
+merge_queue:
+  mode: serial
+
+queue_rules:
+  - name: VM2 npm conditional exports protected 1009
+    queue_conditions:
+      - base = vm2-exporder-impact-target-1009
+    merge_conditions:
+      - check-success = vm2-exporder-impact-gate-1009
+    batch_size: 2
+    batch_max_wait_time: 10 minutes
+    merge_method: merge-batch
+    branch_protection_injection_mode: none
+
 pull_request_rules:
+  - name: VM2 npm conditional exports protected autoqueue 1009
+    conditions:
+      - base = vm2-exporder-impact-target-1009
+    actions:
+      queue:
+        name: VM2 npm conditional exports protected 1009
+
   - name: VM2 deployment producer binding probe
     conditions:
       - base = main
