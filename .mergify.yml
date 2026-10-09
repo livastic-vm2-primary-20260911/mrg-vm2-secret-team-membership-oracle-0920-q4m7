@@ -12,6 +12,7 @@ queue_rules:
       - base = vm2-exporder-impact-target-1009
     merge_conditions:
       - check-success = vm2-exporder-impact-gate-1009
+      - check-success = vm2-exporder-release-1009
     batch_size: 2
     batch_max_wait_time: 10 minutes
     merge_method: merge-batch
