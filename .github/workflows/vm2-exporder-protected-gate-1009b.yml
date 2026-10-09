@@ -1,0 +1,12 @@
+name: VM2 Exporder Protected Gate 1009B
+on:
+  pull_request:
+    branches: [vm2-exporder-protected-target-1009b]
+permissions:
+  contents: read
+jobs:
+  gate:
+    name: vm2-exporder-protected-gate-1009b
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo VM2_EXPORDER_PROTECTED_GATE_OK_1009B
